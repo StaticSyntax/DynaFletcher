@@ -1,6 +1,7 @@
 ![alt text](https://i.imgur.com/UW1c4lN.png)
 
 ## Features
+• Supports all banks and bank chests.  
 • Cuts and strings any type of bow.  
 • Cuts arrow shafts and javelin shafts.  
 • Flights headless arrows, unfinished bolts and darts.  
