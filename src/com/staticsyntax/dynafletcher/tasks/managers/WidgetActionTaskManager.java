@@ -5,6 +5,8 @@ import com.staticsyntax.dynafletcher.tasks.actions.*;
 
 public class WidgetActionTaskManager extends ActionTaskManager {
 
+    private boolean canMakeAll = false;
+
     public WidgetActionTaskManager(DynaFletcher script) {
         super(script);
     }
@@ -13,5 +15,15 @@ public class WidgetActionTaskManager extends ActionTaskManager {
     protected void initTasks() {
         tasks.add(new ItemAction(script, this));
         tasks.add(new WidgetAction(script, this));
+        tasks.add(new TwiddleMouse(script, this));
+        tasks.add(new TwiddleCamera(script, this));
+    }
+
+    public boolean canMakeAll() {
+        return canMakeAll;
+    }
+
+    public void setCanMakeAll(boolean canMakeAll) {
+        this.canMakeAll = canMakeAll;
     }
 }

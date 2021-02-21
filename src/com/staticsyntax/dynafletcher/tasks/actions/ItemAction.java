@@ -20,9 +20,13 @@ public class ItemAction extends ActionTask {
     public boolean canProcess() {
         RS2Widget optionWidget = Utils.getOptionWidget(script);
         if(optionWidget == null) {
-            return WidgetlessFletch.isWidgetlessFletching(script) || !actionTaskManager.isFletching() || api.getDialogues().isPendingContinuation();
+            return WidgetlessFletch.isWidgetlessFletching(script)
+                    || api.getInventory().isItemSelected()
+                    || (!actionTaskManager.isFletching() || api.getDialogues().isPendingContinuation());
         } else {
-            return WidgetlessFletch.isWidgetlessFletching(script) || (!actionTaskManager.isFletching() && !optionWidget.isVisible()) || api.getDialogues().isPendingContinuation();
+            return WidgetlessFletch.isWidgetlessFletching(script)
+                    || api.getInventory().isItemSelected()
+                    || ((!actionTaskManager.isFletching() && !optionWidget.isVisible()) || api.getDialogues().isPendingContinuation());
         }
     }
 
@@ -38,7 +42,7 @@ public class ItemAction extends ActionTask {
 
             Sleep.waitCondition(() -> api.getInventory().isItemSelected() != wasItemSelected, MethodProvider.random(1000, 2000));
 
-            if(!WidgetlessFletch.isWidgetlessFletching(script)) {
+            if(!WidgetlessFletch.isWidgetlessFletching(script) && wasItemSelected) {
                 Sleep.waitCondition(() -> Utils.getOptionWidget(script) != null, MethodProvider.random(750, 1500));
             }
         }

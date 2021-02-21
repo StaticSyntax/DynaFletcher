@@ -13,7 +13,7 @@ import java.awt.*;
 @ScriptManifest(logo = "https://i.imgur.com/8Vvtapg.png",
         name = "DynaFletcher",
         info = "Static Scripts",
-        version = 1.0,
+        version = 1.01,
         author = "StaticSyntax")
 public class DynaFletcher extends Script {
 
@@ -38,7 +38,7 @@ public class DynaFletcher extends Script {
     @Override
     public int onLoop() {
         coreTaskManager.runTasks();
-        return MethodProvider.random(250, 500);
+        return MethodProvider.random(200, 600);
     }
 
     @Override

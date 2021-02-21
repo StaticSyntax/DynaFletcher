@@ -7,6 +7,8 @@ import com.staticsyntax.dynafletcher.utils.Sleep;
 import com.staticsyntax.dynafletcher.utils.Utils;
 import org.osbot.rs07.script.MethodProvider;
 
+import java.util.stream.Stream;
+
 public class WithdrawItems extends Task {
 
     public WithdrawItems(DynaFletcher script, String name) {
@@ -23,10 +25,15 @@ public class WithdrawItems extends Task {
 
     @Override
     public void process() {
-        if(script.getTargetItem().requiresTool()) {
-            withdrawTool();
+        if(bankContainsMaterials()) {
+            if(script.getTargetItem().requiresTool()) {
+                withdrawTool();
+            } else {
+                withdrawMaterials();
+            }
         } else {
-            withdrawMaterials();
+            api.log("DynaFletcher was unable to find required materials - stopping script...");
+            script.stop(true);
         }
     }
 
@@ -55,5 +62,9 @@ public class WithdrawItems extends Task {
                 }
             }
         }
+    }
+
+    private boolean bankContainsMaterials() {
+        return Stream.of(script.getTargetItem().getItemsRequired()).map(i -> i.getName()).allMatch(api.getBank()::contains);
     }
 }
