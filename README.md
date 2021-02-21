@@ -2,12 +2,13 @@
 
 ## Features
 • Supports all banks and bank chests.  
-• Cuts and strings any type of bow.  
+• Cuts and strings all shortbows and longbows.  
 • Cuts arrow shafts and javelin shafts.  
-• Flights headless arrows, unfinished bolts and darts.  
+• Flights arrows, bolts and darts.  
 • Cuts gems into bolt tips.  
 • Tips arrows, bolts and javelins.  
-• Cuts all wooden shields.
+• Cuts all wooden shields.  
+• Logs out when required items are depleted.
 
 ## Screenshots
 
