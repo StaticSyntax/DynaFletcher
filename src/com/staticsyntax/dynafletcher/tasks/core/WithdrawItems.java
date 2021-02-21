@@ -65,6 +65,6 @@ public class WithdrawItems extends Task {
     }
 
     private boolean bankContainsMaterials() {
-        return Stream.of(script.getTargetItem().getItemsRequired()).map(i -> i.getName()).allMatch(api.getBank()::contains);
+        return Stream.of(script.getTargetItem().getItemsRequired()).filter(i -> i.getCategory() != Items.Category.TOOL).map(i -> i.getName()).allMatch(api.getBank()::contains);
     }
 }
